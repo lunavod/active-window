@@ -15,6 +15,7 @@ try {
 		$ActiveHandle = [UserWindows]::GetForegroundWindow()
 		$Process = Get-Process | ? {$_.MainWindowHandle -eq $activeHandle}
 		$string =  $Process | Select ProcessName, @{Name="AppTitle";Expression= {($_.MainWindowTitle)}}
+		[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 		Write-Host -NoNewline $string
 		Start-Sleep -m $interval
 		If ($n -gt 0) {$n-=1}
